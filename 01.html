@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+        $(document).ready(function() {
+            // data-role="slider"인 요소객체의 data-width 속성의 값을 가져와서 변수에 대입
+            var width =  $('[data-role="slider"]').attr('data-width');
+            // data-role="slider"인 요소객체의 data-height 속성의 값을 가져와서 변수에 대입
+            var height = $('[data-role="slider"]').attr('data-height');
+            // data-role="slider"인 요소객체의 하위에 있는 div 중에 class가 item인 요소들의 개수를 변수에 대입
+            var count =  $('[data-role="slider"] div.item').length;
+
+            $('[data-role="slider"]').css({
+                position : 'relative',
+                overflow: 'hidden',
+                width: width,
+                height: height
+            }).find('.container').css({
+                position : 'absolute',
+                width: count * width,
+                overflow: 'hidden'
+            }).find('.item').css({
+                width: width,
+                height: height,
+                float: 'left'
+            });
+
+            // 현재 페이지를 저자하는 변수 선업
+            var currentPage = 0;
+            // 함수(페이지변경 기능)를 선언해서 변수에 대입
+            var changePage = function() {
+                $('[data-role="slider"] > .container').animate({
+                    left: -currentPage * width
+                }, 500);
+            };
+
+            //event listener(이벤트 발생을 감시하다가 처리를 한다.)
+            $('#left-button').click(function () {
+                if(currentPage>0){
+                    currentPage = currentPage - 1;
+                    changePage();
+                }
+            });
+            $('#right-button').click(function () {
+                if(currentPage < count - 1){
+                    currentPage = currentPage + 1;
+                    changePage();
+                }
+            });
+        });
+    </script>
+    <style>
+        div.item:nth-child(1){background: blueviolet;}
+        div.item:nth-child(2){background: pink;}
+        div.item:nth-child(3){background: burlywood;}
+    </style>
+</head>
+<body>
+    <div data-role="slider" data-width="500" data-height="300">
+        <div class = "container">
+            <div class = "item">
+                <h1>Lorem ipsum dolor sit amet. </h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis voluptate molestias omnis! Perferendis dignissimos quidem eligendi autem ex eius dolor nesciunt animi esse! Sapiente adipisci deleniti ea tempore aspernatur exercitationem.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quasi rem ullam quo odit, quidem officia culpa voluptatem perferendis. Nobis dignissimos libero excepturi ut praesentium incidunt explicabo quo eligendi velit.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt doloribus consequatur quae sunt illo, veritatis ut impedit doloremque est. Nostrum, ab maiores officiis rerum dolorum corporis eveniet iure possimus quis.
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non animi aperiam vitae quae expedita quos eum alias delectus blanditiis, eaque minus est id facere quasi? Unde omnis inventore voluptate cupiditate.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate consequatur eligendi sunt quaerat velit quia omnis voluptas quidem aliquam cum neque, alias iure nemo repudiandae, sequi maiores? Rerum, ab exercitationem.
+                </p>
+            </div>
+            <div class = "item">
+                <h1>proin in urna turpis.</h1>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi et nemo mollitia perspiciatis, necessitatibus, tenetur cumque nulla omnis possimus, est quod blanditiis cupiditate incidunt odio laudantium porro ullam quos velit.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate dolorum doloribus veritatis atque distinctio quae eos, ducimus harum possimus ipsa impedit! Porro quo sunt dolores asperiores nostrum illum dolore excepturi!
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni id quas placeat repudiandae ex non maiores veritatis dolore harum excepturi, debitis nostrum eligendi asperiores laudantium voluptas tempore architecto libero dolores.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae molestias cumque amet saepe numquam id voluptates exercitationem aut temporibus illo, magnam molestiae laborum quaerat perspiciatis voluptatibus unde magni inventore earum.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit dolorem itaque, nam doloremque ratione repudiandae suscipit, atque odio alias distinctio ipsum necessitatibus provident molestias voluptatibus fuga, eaque placeat libero ex!
+                </p>
+            </div>
+            <div class = "item">
+                <h1>Duis malesuada lorem neque.</h1>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam corporis repellendus nostrum mollitia quos, tempore quo atque eligendi minima, in tempora esse sint ipsam excepturi quasi aliquam? Consectetur, vitae repellendus!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem hic autem, ab natus tempore nam pariatur voluptas, id eligendi eveniet inventore nulla explicabo sunt totam laudantium dolorum! Officia, veritatis doloribus?
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic omnis officiis vel quis soluta, molestiae nesciunt neque veniam numquam in tempore, dolorem at similique nihil dolor non doloribus facilis. Fugit?
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi eaque a consequatur dolores eum illo reiciendis rem voluptatibus reprehenderit similique voluptates aliquam exercitationem, laborum dicta. Ipsa ducimus dignissimos neque asperiores?
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur ut dolore nihil necessitatibus provident. Ad eveniet, quasi amet dolore et beatae neque earum maxime harum autem placeat, perferendis exercitationem rerum?
+                </p>
+            </div>
+        </div>
+    </div>
+    <button id = "left-button">←</button>
+    <button id = "right-button">→</button>
+</body>
+</html>
